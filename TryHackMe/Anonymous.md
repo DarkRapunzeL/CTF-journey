@@ -1,3 +1,5 @@
+https://tryhackme.com/room/anonymous
+
 # nmap
 
 Let's start out with a scan from nmap to see what ports are open on the target.
