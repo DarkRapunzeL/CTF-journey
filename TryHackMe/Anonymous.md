@@ -7,6 +7,7 @@ Let's start out with a scan from nmap to see what ports are open on the target.
 ![image](Images/anon1.png)
 
 Okay, so we have ftp and smb open. Along with the name of the room being anonymous this seems interesting. And to make it easier for us, we'll add the IP to our hosts file.
+
 $ echo "10.10.179.27 anon.thm" | sudo tee -a /etc/hosts
 
 # ftp
