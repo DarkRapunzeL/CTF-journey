@@ -6,7 +6,7 @@ Difficulty: Medium
 
 After starting the machine and letting it boot up for a few minuntes. We start an nmap scan of the target IP. To find out what we're dealing with. The room talks about a Wordpress website so we know that there should at least be a port for HTTP open.
 
-<image>
+![image](Images/smol1.png)
 
 We see that we have both an SSH and an HTTP-server running on standard ports. Let's start by checking out the HTTP-server.
 
@@ -28,7 +28,7 @@ echo "10.10.226.64 www.smol.thm" | sudo tee -a /etc/hosts
 
 Now if we try again we'll be able to get the page to load. But remember that you have to supply the IP address for your machine, as it's more likely than not that it will differ.
 
-<image>
+![image](Images/smol3.png)
 
 Looking through the site we don't really find that much of value, except an email-address and one article that seems to be written by someone else. We already knew that it was built with WordPress, so that isn't really any news. But since it is, let's fire up wpscan to try to enumerate it further.
 
@@ -58,7 +58,7 @@ Firstly let's try it out on a file we know exists, namely passwd.
 http://www.smol.thm/wp-content/plugins/jsmol2wp/php/jsmol.php?query=php://filter/resource=/etc/passwd
 ```
 
-<image>
+![image](Images/smol4.png)
 
 Success! We have confirmed the exploit and we're able to read files on the server. If you look in this file, we see that there are three users on the server that is also registered in Wordpress.
 
@@ -74,7 +74,7 @@ Nice! A clear-text password and a username. This should come in handy. But where
 http://www.smol.thm/wp-login.php
 ```
 
-<image>
+![image](Images/smol5.png)
 
 # getting deeper access
 
@@ -82,7 +82,7 @@ So we've been able to get past our first hurdle. We've managed to snag credentia
 
 Looking through this portal we find a page that has been set as private. Interesting!
 
-<image>
+![image](Images/smol6.png)
 
 The first row seems really interesting. Backdoor, plugin named "Hello Dolly". Let's try to find out more about this plugin.
 
@@ -96,7 +96,7 @@ There it is! Now what can we learn about this? There was talk about a backdoor. 
 
 Decoding it in our terminal gives us this result.
 
-<image>
+![image](Images/smol7.png)
 
 Looks like there is some more encoding going on. After looking around for a while I found out that "\143\155\x64" decodes into cmd. So let's try and see if we can have any command injeciton.
 
@@ -104,7 +104,7 @@ Looks like there is some more encoding going on. After looking around for a whil
 http://www.smol.thm/wp-admin/index.php?cmd=id
 ```
 
-<image>
+![image](Images/smol8.png)
 
 Awesome! Now let's try to leverage this to get a reverse shell going. After experimenting for a bit, I found a way to get it to work. By using a python3 reverse shell and encoding it as base64, that then is decoded and piped to bash.
 
@@ -128,7 +128,7 @@ So now what can we do? Remeber how we got these credentials? That's right. It wa
 mysql -u wpuser -p
 ```
 
-<image>
+![image](Images/smol9.png)
 
 There it is. the wordpress database.
 
@@ -179,7 +179,7 @@ Hmmm.. All of the directories belong to the group internal. So we have access to
 
 In one of them we find that there is a .ssh directory which is open to all. And within it an id_rsa. This almost seems too good.
 
-<image>
+![image](Images/smol10.png)
 
 I'll copy it over to my local machine. I'll just put up a temporary http-server in the .ssh directory.
 
@@ -190,7 +190,7 @@ local:
 wget http://10.10.122.62:12345/id_rsa
 ```
 
-<image>
+![image](Images/smol11.png)
 
 So now we have the users private key. So we should be able to log in to the ssh service now. Just remember to make sure the key has the right permissions.
 
@@ -236,7 +236,7 @@ And there we have it. With the password, we have the ability to run anything wit
 sudo su
 ```
 
-<image>
+![image](Images/smol12.png)
 
 Nice! Now we can just read the /root/root.txt and we've finished the room.
 
