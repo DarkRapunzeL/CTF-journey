@@ -7,8 +7,7 @@ Difficulty: Beginner
 
 Starting out, we start an nmap-scan as usual when it is a boot2root machine. Since we want to know what ports are open and find what our possible ways into the machine might be.
 
-![task15_1](https://github.com/user-attachments/assets/f2341a36-3e22-42b4-a3a2-215735bc75c5)
-
+![task15_2](https://github.com/user-attachments/assets/d4208b05-9f6d-472f-ad59-fb37c5f0d915)
 
 We find that there are 3 ports of interest to start off with. ssh, http and finger. Finger is something I've never encountered before, and we have no credentials for ssh. So the obvious choice to start out with is checking out what we can find on the http port.
 
@@ -16,8 +15,7 @@ We find that there are 3 ports of interest to start off with. ssh, http and fing
 
 As we enter the site this is what we're greeted with.
 
-![task15_2](https://github.com/user-attachments/assets/d4208b05-9f6d-472f-ad59-fb37c5f0d915)
-
+![task15_1](https://github.com/user-attachments/assets/f2341a36-3e22-42b4-a3a2-215735bc75c5)
 
 There isn't really much of note at first glance. But to the keen eye we can actually gather some vital information. There are three names here. They might actually be used as usernames as well.
 
