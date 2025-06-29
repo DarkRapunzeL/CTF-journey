@@ -1,7 +1,7 @@
 # Task 15 - Chess Industry
 
 Category: Boot2Root
-Dificulty: Beginner
+Difficulty: Beginner
 
 # nmap
 
