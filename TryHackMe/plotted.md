@@ -125,16 +125,23 @@ Tada! Now we can just read the user.txt file and we'll be on our way to escalate
 # getting root
 So if you remember from before, we found out that plot_admin was able to run openssl as root through doas. How are we going to leverage this?
 Well, let's see what we can find out from gtfobins.
+
 https://gtfobins.github.io/gtfobins/openssl/
+
 Apparently we should be able to get a root shell through making a new reverse shell through it. This didn't work for me, so let's skip that and go for another option.
 Let's give ourselves the privilege to run anything with sudo without a password. Since we can both read and write as root with openssl.
+
 We'll start with making a copy of the current sudoers file. So that we can restore it to a good version later.
 
 ```doas openssl enc -in /etc/sudoers```
 
 <img width="828" height="516" alt="image" src="https://github.com/user-attachments/assets/06ac2c36-a5fe-4782-ad9b-151b7879d808" />
 
-We added a line for our user there at the end. Now let's overwrite the file on the server to give us the privileges.
+We'll add a line for our user there at the end. And save it on our attacker PC as sudoers.
+
+Now let's overwrite the file on the server to give us the privileges.
+
+```echo "plot_admin ALL=(ALL) NOPASSWD:ALL | doas openssl enc -out /etc/sudoers```
 
 <img width="816" height="266" alt="image" src="https://github.com/user-attachments/assets/cc3bb913-be13-48a9-86c4-bb3c0e464587" />
 
