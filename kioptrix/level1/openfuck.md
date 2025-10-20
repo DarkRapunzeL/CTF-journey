@@ -23,7 +23,7 @@ Now that we have it downloaded we need to adjust the code for the exploit to poi
 
 <img width="1099" height="574" alt="image" src="https://github.com/user-attachments/assets/92d7f251-cee6-4797-ac71-d238bdc6ed48" />
 
-We'll change this to http://<our-ip>:<our-port>/ptrace-kmod.c (notice the removal of the s in the protocol in the beginning) and we'll change the name of the file we downloaded to ptrace-kmod.c
+We'll change this to http://\<our-ip>:\<our-port>/ptrace-kmod.c (notice the removal of the s in the protocol in the beginning) and we'll change the name of the file we downloaded to ptrace-kmod.c
 
 ```mv 3 ptrace-kmod.c```
 
